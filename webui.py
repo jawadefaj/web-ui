@@ -35,6 +35,7 @@ from gradio.themes import Citrus, Default, Glass, Monochrome, Ocean, Origin, Sof
 from src.utils.default_config_settings import default_config, load_config_from_file, save_config_to_file, save_current_config, update_ui_from_config
 from src.utils.utils import update_model_dropdown, get_latest_files, capture_screenshot
 
+from src.utils.modified_agents import deepseek_config, linkedin_deepseek, linkedin_openai
 
 # Global variables for persistence
 _global_browser = None
@@ -959,7 +960,9 @@ def main():
     parser.add_argument("--dark-mode", action="store_true", help="Enable dark mode")
     args = parser.parse_args()
 
-    config_dict = default_config()
+    # config_dict = default_config()
+    config_dict = linkedin_deepseek()
+    # config_dict = linkedin_openai()
 
     demo = create_ui(config_dict, theme_name=args.theme)
     demo.launch(server_name=args.ip, server_port=args.port)
